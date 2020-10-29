@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+
+    <title>Cart</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<div class="container">
+    <div th:replace="~{navigation :: navigation(Cart)}" />
+
+    <h1><b>Cart</b></h1>
+    <span th:if="${positions.size() == 0}">Cart is empty now</span>
+    <table th:if="${positions.size() > 0}" class="table table-hover">
+        <thead class="thead-dark">
+        <tr>
+            <td><b>ID</b></td>
+            <td><b>Title</b></td>
+            <td><b>Price</b></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="position : ${positions}">
+            <td th:text="${position.product.id}"/>
+            <td th:text="${position.product.title}"/>
+            <td th:text="${position.product.price}"/>
+        </tr>
+        </tbody>
+    </table>
+    <a th:if="${positions.size() > 0}" class="btn btn-outline-success" th:href="@{/cart/make-order}">Make the order</a>
+</div>
+</body>
+</html>
