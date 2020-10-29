@@ -1,7 +1,10 @@
 package com.rga.springwebapp.domain;
 
+import lombok.Builder;
+
 import javax.persistence.*;
 
+@Builder
 @Entity
 @Table(name = "products")
 public class Product {
